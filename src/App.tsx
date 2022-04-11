@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import EventsExample from './components/EventsExample';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import UsersPage from './components/UsersPage';
+import TodosPages from './components/TodosPages';
+import UserItemPage from './components/UserItemPage';
+import TodoItemPage from './components/TodoItemPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <ul>
+          <li><Link to="/">Events</Link></li>
+          <li><Link to="/todos">Todos</Link></li>
+          <li><Link to="/users">Users</Link></li>
+        </ul>
+        <Routes>
+          <Route path="/todos" element={<TodosPages />} />
+          <Route path="/todos/:id" element={<TodoItemPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/users/:id" element={<UserItemPage />} />
+          <Route path="/" element={<EventsExample />} />
+        </Routes>
+    </Router>
   );
 }
 
